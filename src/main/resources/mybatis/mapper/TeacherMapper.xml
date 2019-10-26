@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.aynu.mapper.TeacherMapper">
+
+    <select id="selectById" resultType="Teacher">
+        select tid,tname,tage,tmoney from teacher where tid=#{id}
+    </select>
+
+    <select id="selectByName" resultType="Teacher">
+        select tid,tname,tage,tmoney from teacher where tname=#{tname}
+    </select>
+
+    <update id="updateTea">
+        update teacher
+        <set>
+            <if test="tname != null">
+                tname =#{tname},
+            </if>
+            <if test="tage != null">
+                tage = #{tage},
+            </if>
+            <if test="tmoney != null">
+                tmoney = #{tmoney}
+            </if>
+        </set>
+        <where>
+            tid=#{tid}
+        </where>
+    </update>
+</mapper>
